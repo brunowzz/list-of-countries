@@ -42,7 +42,7 @@ export default async function Countrie({
 
   return (
     <section className="container py-7">
-      <h1 className="text-center mb-2 text-5xl font-bold text-black">
+      <h1 className="text-center mb-2 text-5xl font-bold text-black md:text-3xl">
         {country.translations.por.common}
       </h1>
 
@@ -54,7 +54,7 @@ export default async function Countrie({
         Voltar
       </Link>
 
-      <article className="w-full bg-white rounded-2xl flex items-center justify-between p-12 mb-12">
+      <article className="flex md:flex-row flex-col justify-between min-w-full p-10 bg-white rounded-xl">
         <div>
           {country?.capital?.length && (
             <h2 className="text-xl text-gray-800">
@@ -89,13 +89,12 @@ export default async function Countrie({
           )}
         </div>
 
-        <figure>
+        <figure className="relative h-48 my-2 md:w-96 shadow-md md:order-last order-first ">
           <Image
             className="rounded-lg object-cover"
             src={country.flags.svg}
             alt={country.flags.alt}
-            width={430}
-            height={275}
+            fill
           />
         </figure>
       </article>
@@ -105,15 +104,16 @@ export default async function Countrie({
           <h3 className="text-2xl font-bold mb-6">
             Países que fazem fronteira
           </h3>
-          <article className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full container gap-2">
+          <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full container gap-2">
             {borderCountries?.map((border: any) => (
               <CardCountries
+                key={border.name}
                 countrieName={border.name}
                 flag={border.flag}
                 altFlag={border.flagAlt}
               />
             ))}
-          </article>
+          </section>
         </>
       )}
     </section>
